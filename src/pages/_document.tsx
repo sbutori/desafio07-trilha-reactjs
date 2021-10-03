@@ -16,6 +16,7 @@ class MyDocument extends Document {
     return (
       <Html lang="pt-br">
         <Head>
+          <link rel="shortcut icon" href="/airplane.svg" />
           <meta http-equiv="Content-Language" content="pt-br" />
         </Head>
         <body>
