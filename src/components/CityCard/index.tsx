@@ -1,31 +1,59 @@
-import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
-import { NextComponentType } from 'next';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 
-const CityCard: NextComponentType = () => {
-  const city = {
-    cityId: 'londres',
-    countryId: 'gb',
-    title: 'Londres',
-    country: 'Reino Unido',
+type CityCardProps = {
+  city: {
+    cityId: string;
+    countryId: string;
+    title: string;
+    country: string;
   };
+};
 
+const CityCard = ({ city }: CityCardProps) => {
   return (
-    <Box w="256px" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image src={`/cities/${city.cityId}.jpg`} alt={`Foto de ${city.title}`} />
+    <Box
+      key={city.cityId}
+      maxW="256px"
+      maxH="279px"
+      mb={['1.25rem', null, '3rem']}
+      mx={['auto', null, 0]}
+      px={0}
+    >
+      <Box maxH="173px">
+        <Image
+          w="256px"
+          h="173px"
+          objectFit="cover"
+          borderTopLeftRadius="md"
+          borderTopRightRadius="md"
+          src={`/cities/${city.cityId}.jpg`}
+          alt={`Foto de ${city.title}`}
+        />
+      </Box>
 
-      <Flex align="center" justify="center" px="6">
+      <Flex
+        align="center"
+        justify="space-around"
+        background="white"
+        borderWidth="1px"
+        borderTopWidth="0"
+        borderColor="highlight"
+        borderBottomLeftRadius="md"
+        borderBottomRightRadius="md"
+      >
         <Box alignItems="center">
-          <Heading
-            mt="1"
-            fontWeight="semibold"
-            fontSize="xl"
-            as="h4"
-            lineHeight="tight"
-            isTruncated
-          >
+          <Text textStyle="cityCardTitle" mt="1.125rem" fontSize="xl" as="h2">
             {city.title}
-          </Heading>
-          <Text as="span" color="gray.600" fontSize="md" fontWeight="medium">
+          </Text>
+          <Text
+            textStyle="cityCardDesc"
+            color="gray.600"
+            fontSize="md"
+            fontWeight="medium"
+            mt="0.75rem"
+            marginBottom="1.5625rem"
+            as="h4"
+          >
             {city.country}
           </Text>
         </Box>
@@ -33,6 +61,13 @@ const CityCard: NextComponentType = () => {
           <Image
             src={`/countries/${city.countryId}.png`}
             alt={`Foto de ${city.title}`}
+            w="30px"
+            h="30px"
+            my="38px"
+            objectFit="fill"
+            borderRadius="50%"
+            borderColor="light.info"
+            border="1px solid"
           />
         </Box>
       </Flex>
